@@ -1,4 +1,4 @@
-import { app, BrowserWindow, screen, ipcMain } from 'electron';
+import { app, screen, BrowserWindow, ipcMain } from 'electron';
 import node_path from 'node:path';
 
 app.whenReady().then(() => {
