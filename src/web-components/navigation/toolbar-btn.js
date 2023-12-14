@@ -31,12 +31,22 @@ const button_maximize = Reflect.construct(customElements.get(__filename), [RegEx
     })
 
 const toolbar = document.body.children.toolbar;
-    toolbar.style.display = 'flex';
-    toolbar.style.justifyContent = 'flex-end';
-    toolbar.style.width = "100%";
-    toolbar.style.backgroundColor = "#efefef";
+const toolbar$css = new CSSStyleSheet()
+    toolbar$css.insertRule(`
+        #${toolbar.id} {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            background-color: #efefef;
+        }
+`)
+
 toolbar.append(
     button_minimize,
     button_maximize,
     button_close,
 )
+
+export {
+    toolbar$css
+}
