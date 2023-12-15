@@ -1,7 +1,6 @@
-// DEV_NOTE # filesystem-based web constant "__filename" with stripped format (stripping format is optional [TESTED])
-const __filename = import.meta.url.split('/').pop().replace(".js", "");
+const __dirname = import.meta.url.split('/').at(-2);
 
-customElements.define(__filename, 
+customElements.define(__dirname, 
 class extends HTMLButtonElement {
     constructor(symbol){
         super()
@@ -14,11 +13,11 @@ class extends HTMLButtonElement {
     extends: 'button'
 })
 
-const button_minimize = Reflect.construct(customElements.get(__filename), [RegExp('\u{1F5D5}').source])
+const button_minimize = Reflect.construct(customElements.get(__dirname), [RegExp('\u{1F5D5}').source])
     button_minimize.addEventListener('click', __preload__toolbarControls.minimize.bind())
-const button_close = Reflect.construct(customElements.get(__filename), [RegExp('\u{1F5D9}').source])
+const button_close = Reflect.construct(customElements.get(__dirname), [RegExp('\u{1F5D9}').source])
     button_close.addEventListener('click', window.close.bind())
-const button_maximize = Reflect.construct(customElements.get(__filename), [RegExp('\u{1F5D6}').source])
+const button_maximize = Reflect.construct(customElements.get(__dirname), [RegExp('\u{1F5D6}').source])
     let isMinimizedReady = false;
     button_maximize.addEventListener('click', ()=>{
         isMinimizedReady = !isMinimizedReady;
