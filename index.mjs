@@ -6,8 +6,8 @@ app.whenReady().then(() => {
     const { width, height } = screen.getPrimaryDisplay().workAreaSize;
     const context = new BrowserWindow({
         webPreferences: {
-            preload/* ^1 */: node_path.join(node_path.resolve(), 'preload.mjs'),
-            sandbox: false, /* to allow Node .mjs (ES6) modules to be loaded within preload refer^1 */
+            preload: node_path.join(node_path.resolve(), 'preload.mjs'),
+            sandbox: false, /* DEV_NOTE # "sandbox:false" allows us to use ES6 module syntax in our preload script */
         },
         frame: /* ! */false,
         width,

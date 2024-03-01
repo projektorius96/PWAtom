@@ -40,12 +40,14 @@ const toolbar$css = new CSSStyleSheet()
         }
 `)
 
-toolbar.append(
+toolbar.append(...[
     button_minimize,
     button_maximize,
     button_close,
-)
+])
 
 export {
     toolbar$css
 }
+
+export default import.meta.url.split('/').at(-2)
