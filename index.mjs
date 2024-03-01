@@ -14,6 +14,15 @@ app.whenReady().then(() => {
         height,
         movable: true
     })
+
+    const debugee = context.webContents.debugger;
+        debugee.attach('1.3')
+        debugee.sendCommand('Runtime.enable')
+        debugee.on('message', (event, method, params)=>{
+            if (method === 'Runtime.consoleAPICalled'){
+                console.log(params)
+            }
+        })
     
     context.loadFile('index.html')
 
