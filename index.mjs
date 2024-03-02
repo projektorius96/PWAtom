@@ -18,9 +18,10 @@ app.whenReady().then(() => {
     const debugee = context.webContents.debugger;
         debugee.attach('1.3')
         debugee.sendCommand('Runtime.enable')
-        debugee.on('message', (event, method, params)=>{
+        debugee.on('message', (event, method, args)=>{
             if (method === 'Runtime.consoleAPICalled'){
-                console.log(params)
+                console.log(event.defaultPrevented)
+                console.log(args)
             }
         })
     
