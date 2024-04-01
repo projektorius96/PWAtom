@@ -1,3 +1,4 @@
+import "./observer/implementation.js";
 import { toolbar$css } from './web-components/navigation/toolbar-btn/index.js';
 import { 
     document_body$css,
@@ -7,5 +8,5 @@ import {
 document.adoptedStyleSheets.push(...[
     document_body$css,
     draggableRegion$css,
-    toolbar$css
+    toolbar$css,
 ])

@@ -1,7 +1,7 @@
 import { app, screen, BrowserWindow, ipcMain } from 'electron';
 import node_path from 'node:path';
 
-app.whenReady().then(() => {
+app.whenReady().then(async () => {
 
     const { width, height } = screen.getPrimaryDisplay().workAreaSize;
     const context = new BrowserWindow({
@@ -16,16 +16,16 @@ app.whenReady().then(() => {
     })
 
     const debugee = context.webContents.debugger;
-        debugee.attach('1.3')
+        debugee.attach('1.3') 
         debugee.sendCommand('Runtime.enable')
         debugee.on('message', (event, method, args)=>{
             if (method === 'Runtime.consoleAPICalled'){
-                console.log(event.defaultPrevented)
-                console.log(args)
+                console.log("Hello from CDP")
             }
         })
     
     context.loadFile('index.html')
+    /* context.loadURL('http://localhost:5173/') */
 
     ipcMain.handle('action:minimize', ()=>context.minimize())
 
