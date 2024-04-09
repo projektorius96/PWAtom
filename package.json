@@ -4,7 +4,7 @@
   "version": "1.0.3",
   "license": "MIT",
   "dependencies": {
-    "electron": "^29.1.6",
+    "electron": "^29.2.0",
     "idb": "^8.0.0"
   }
 }

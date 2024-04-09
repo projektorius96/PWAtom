@@ -18,14 +18,19 @@ app.whenReady().then(async () => {
     const debugee = context.webContents.debugger;
         debugee.attach('1.3') 
         debugee.sendCommand('Runtime.enable')
+        debugee.sendCommand('Runtime.evaluate')
         debugee.on('message', (event, method, args)=>{
-            if (method === 'Runtime.consoleAPICalled'){
-                console.log("Hello from CDP")
+            switch (method) {
+                case 'Runtime.consoleAPICalled':
+                    console.log(args)
+                    break;
+                case 'Runtime.executionContextCreated':
+                    console.log(args["context"])
+                    break;
             }
         })
     
     context.loadFile('index.html')
-    /* context.loadURL('http://localhost:5173/') */
 
     ipcMain.handle('action:minimize', ()=>context.minimize())
 
