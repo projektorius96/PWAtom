@@ -16,9 +16,12 @@ app.whenReady().then(async () => {
     })
 
     const debugee = context.webContents.debugger;
-        debugee.attach('1.3') 
-        debugee.sendCommand('Runtime.enable')
-        debugee.sendCommand('Runtime.evaluate')
+        debugee.attach('1.3')
+            Promise.allSettled([
+                debugee.sendCommand('Autofill.disable'),
+                debugee.sendCommand('Runtime.enable'),
+                debugee.sendCommand('Runtime.evaluate')
+            ]).then();
         debugee.on('message', (event, method, args)=>{
             switch (method) {
                 case 'Runtime.consoleAPICalled':
