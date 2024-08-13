@@ -4,6 +4,6 @@
   "version": "1.0.3",
   "license": "MIT",
   "dependencies": {
-    "electron": "^29.1.0"
+    "electron": "^31.3.1"
   }
 }
